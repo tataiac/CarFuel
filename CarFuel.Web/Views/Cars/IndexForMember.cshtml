@@ -1,0 +1,28 @@
+﻿@using app = CarFuel.Models
+@model IEnumerable<CarFuel.Models.Car>
+@{
+  app.User appUser = (app.User)ViewBag.AppUser;
+}
+
+<h2>Cars</h2>
+
+<p>
+  @Html.ActionLink("Create New", "Add")
+</p>
+
+<h3>
+  @appUser.DisplayName<br />
+  @appUser.ConsumptionRate.ToString()
+</h3>
+
+<h4>
+  Total: <span id="totalCars">@Model.Count()</span> car(s).
+</h4>
+
+@foreach (var item in Model) {
+  <a href="~/Cars/AddFillUp/@item.Id" class="btn btn-info btn-lg">
+    <div class="car-name">
+      @item.Name
+    </div>
+  </a>
+}
